@@ -1,3 +1,8 @@
+'''
+Author - Kunal Sharma
+Web - kunalprompt.gihub.io
+'''
+
 from one_page_crawler import crawlPage
 
 urls_list = []
@@ -23,5 +28,6 @@ if __name__=="__main__":
 	except KeyboardInterrupt:
 		print "-------------------------------------------------------------------------------"
 		print "KeyboardInterrupt"
+		print "Total Urls found till now - %d"%(len(urls_list))
 		print urls_list
 		exit(0)
