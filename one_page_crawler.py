@@ -1,3 +1,8 @@
+'''
+Author - Kunal Sharma
+Web - kunalprompt.gihub.io
+'''
+
 import urllib2
 from bs4 import BeautifulSoup
 from urlparse import urlparse
@@ -17,15 +22,14 @@ def crawlPage(page_url):
 		req = urllib2.Request(page_url, None, {'User-agent' : 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5'}) 
 		resp = urllib2.urlopen(req)
 	except Exception, e: 
-		print e
-		# print "Page %s can not be opened."%(page_url)
+		# print e
+		print "Page %s can not be opened."%(page_url)
 		return page_urls_list
 	else:
 		html = resp.read()
 		soup = BeautifulSoup(html)
 		anchors = soup.find_all('a')
 		for i in anchors: # iterating over all anchor tags
-			# print i
 			try: a_href = i["href"] # dropping al javascript calls in <a>
 			except: continue
 			j = urlparse(a_href)
@@ -40,12 +44,4 @@ def crawlPage(page_url):
 						page_urls_list.append(k)
 		print "Urls found - %d"%(len(page_urls_list))
 		return page_urls_list
-# https://www.linkedin.com/wvmx/profile/rankings?trk=wvmx-profile
-# http://www.tutorialspoint.com/python/python_command_line_arguments.htm
-# //www.cwi.nl:80/%7Eguido/Python.html
-# https://www.facebook.com/tutorialspointindia
-# https://www.facebook.com/directory/pages/
-# http://www.treselle.com/careers/open-positions/python-developer/
-# http://www.treselle.com/services/cloud-computing/
-# 
-# print crawlPage('http://www.treselle.com/services/big-data/')
+# print crawlPage('http://recruiterbox.com/')
